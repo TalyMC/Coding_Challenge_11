@@ -32,7 +32,7 @@ class Borrower {
         this.borrowedBooks.push(book)
     }//adding book to borrowedBooks
     returnBook(book) {
-        this.borrowedBooks = this.borrowedBooks.filter (book => book.isbn !== book.isbn)
+        this.borrowedBooks = this.borrowedBooks.filter (libro => libro.isbn !== libro.isbn)
     }//removes book from borrowedBooks
 };
 const borrower1 = new Borrower("Alice Johnson", 201);
@@ -45,3 +45,26 @@ console.log(borrower1.borrowedBooks);
 // Expected output: []
 
 //Task 3 Creating a Library Class
+class Library {
+    constructor() {
+        this.books = [];
+        this.borrowers = [];
+    }
+    addBook(book) {
+        let existingBook = this.books.find(libraryBook => libraryBook.isbn === book.isbn);
+        if (!existingBook) {
+            this.books.push(book);
+        } else {
+            console.log(`Holt: Book with this ISBN already exists`);
+        }
+    } // Adds new book to the library
+    listBooks() {
+        this.books.forEach(book => console.log(book.getDetails()));
+    } // Logs all books' details
+}
+const library = new Library();
+library.addBook(book1);
+library.listBooks();
+// Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 4"
+
+//Task 4 
