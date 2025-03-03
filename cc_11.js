@@ -81,9 +81,11 @@ class Library {
     returnBook(borrowerId, isbn) {
         const borrower = this.borrowers.find(book => book.borrowerId === borrowerId);
         const book = this.books.find(book => book.isbn === isbn);
-        if (book && borrower) {
-            book.updateCopies(1); 
-            borrower.returnBook(book);
+        if (book) {
+            book.updateCopies(1)
+        }
+        if (borrower) {
+            borrower.returnBook(book)
         }
     }
 }
