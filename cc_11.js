@@ -77,7 +77,17 @@ class Library {
             console.log("Borrower or book not found");
         }
     }
+    //Task 5 Implementing Book Returns
+    returnBook(borrowerId, isbn) {
+        const borrower = this.borrowers.find(book => book.borrowerId === borrowerId);
+        const book = this.books.find(book => book.isbn === isbn);
+        if (book && borrower) {
+            book.updateCopies(1); 
+            borrower.returnBook(book);
+        }
+    }
 }
+
 const library = new Library();
 library.addBook(book1);
 library.listBooks();
@@ -90,4 +100,9 @@ console.log(book1.getDetails());
 console.log(borrower1.borrowedBooks);
 // Expected output: ["The Great Gatsby"]
 
-//Task 5
+//Task 5 Implementing Book Returns
+library.returnBook(201, 123456);
+console.log(book1.getDetails());
+// Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 4"
+console.log(borrower1.borrowedBooks);
+// Expected output: []
